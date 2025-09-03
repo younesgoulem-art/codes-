@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>حولنا | أكاديمية مونكس</title>
+  <meta name="description" content="أكاديمية مونكس تقدم محتوى تعليمي احترافي في التداول وتنمية المهارات الشخصية والمهنية.">
   <style>
     * {
       box-sizing: border-box;
@@ -15,17 +16,18 @@
       background: #f5f7fa;
       color: #333;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
-    /* هيدر بصورة وتدرج */
     header {
       position: relative;
       background: url('swing-trading-patterns.jpg') center/cover no-repeat;
-      height: 300px;
+      height: 400px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: white;
+      overflow: hidden;
     }
     header::after {
       content: "";
@@ -35,38 +37,44 @@
       bottom: 0;
       left: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
+      z-index: 1;
+    }
+    header .logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      max-height: 80px;
+      background: white;
+      padding: 6px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 2;
+      transition: transform 0.3s;
+    }
+    header .logo:hover {
+      transform: rotate(5deg) scale(1.05);
     }
     header .content {
       position: relative;
       z-index: 2;
-    }
-    header .logo {
-      max-height: 80px;
-      background: white;
-      padding: 6px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 3;
+      max-width: 700px;
+      animation: fadeInDown 1s ease-out;
     }
     header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 0 3px 8px rgba(0,0,0,0.8);
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.7);
     }
     header p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-      opacity: 0.95;
+      font-size: 1.2rem;
     }
-    /* شريط التنقل */
+    @keyframes fadeInDown {
+      0% {opacity: 0; transform: translateY(-30px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
     nav {
       background: white;
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      padding: 12px 0;
       position: sticky;
       top: 0;
       z-index: 10;
@@ -74,94 +82,188 @@
     nav ul {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      align-items: center;
+      gap: 25px;
       list-style: none;
+      flex-wrap: wrap;
+      padding: 12px 0;
     }
     nav a {
       color: #333;
       font-weight: bold;
       text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
       transition: 0.3s;
+      position: relative;
     }
     nav a:hover {
-      background: #333;
-      color: white;
+      color: #ffcc00;
     }
-    /* صندوق المحتوى */
     main {
-      max-width: 1100px;
-      margin: 40px auto 40px; /* تم زيادة المسافة */
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 20px;
     }
     main h2 {
       text-align: center;
       margin-bottom: 20px;
       color: #333;
+      font-size: 2rem;
+    }
+    main h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: #ffcc00;
+      margin: 10px auto 0 auto;
+      border-radius: 2px;
     }
     main p {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       text-align: center;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0 auto 40px auto;
       color: #555;
     }
-    /* الفوتر */
+
+    /* ===== قسم الفريق ===== */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 50px;
+      margin-top: 50px;
+    }
+    .team-member {
+      background: white;
+      border-radius: 20px;
+      text-align: center;
+      padding: 35px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+    .team-member img {
+      width: 240px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #ffcc00;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .team-member img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+    .team-member h3 {
+      font-size: 1.6rem;
+      color: #222;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .team-member p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 18px;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+    .social-links a img {
+      width: 26px;
+      height: 26px;
+      transition: transform 0.3s;
+    }
+    .social-links a img:hover {
+      transform: scale(1.2);
+    }
+
     footer {
       background: #222;
       color: white;
       text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      header .logo {
-        max-height: 60px;
-      }
-      nav ul {
-        flex-direction: column;
-      }
+      padding: 25px 15px;
+      margin-top: 60px;
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo">
+    <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" loading="lazy">
     <div class="content">
       <h1>من نحن؟</h1>
       <p>في أكاديمية مونكس نقدم محتوى تعليمي احترافي في التداول وتنمية المهارات، مع التركيز على الجودة والإبداع.</p>
     </div>
   </header>
-
-  <nav>
+  <nav aria-label="القائمة الرئيسية">
     <ul>
       <li><a href="index.html">الرئيسية</a></li>
-      <li><a href="about.html">حولنا</a></li>
+      <li><a href="about.html" aria-current="page">حولنا</a></li>
       <li><a href="contact.html">اتصل بنا</a></li>
     </ul>
   </nav>
-
   <main>
     <h2>رسالتنا</h2>
     <p>
       نحن نطمح لتقديم أفضل المحتويات التعليمية في مجالات التداول وتنمية المهارات الشخصية والمهنية.
       هدفنا تمكين المتعلمين من اتخاذ قرارات مستنيرة تحقق لهم النجاح المالي والمعرفي بثقة واحترافية.
     </p>
-  </main>
 
+    <h2>فريقنا</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="swing-trading-patterns.jpg" alt="أحمد علي - خبير التداول والاستثمار" loading="lazy">
+        <h3>أحمد علي</h3>
+        <p>خبير التداول والاستثمار</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/ahmed"><img src="swing-trading-patterns.jpg" alt="Instagram"></a>
+        </div>
+      </div>
+      <div class="team-member">
+        <img src="team2.jpg" alt="سارة محمد - مدربة تطوير مهارات" loading="lazy">
+        <h3>سارة محمد</h3>
+        <p>مدربة تطوير مهارات</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/sara"><img src="icon-instagram.svg" alt="Instagram"></a>
+        </div>
+      </div>
+      <div class="team-member">
+        <img src="team3.jpg" alt="محمد حسن - محلل الأسواق المالية" loading="lazy">
+        <h3>محمد حسن</h3>
+        <p>محلل الأسواق المالية</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/mohamed"><img src="icon-instagram.svg" alt="Instagram"></a>
+        </div>
+      </div>
+      <div class="team-member">
+        <img src="team4.jpg" alt="ليلى أحمد - مصممة المحتوى التعليمي" loading="lazy">
+        <h3>ليلى أحمد</h3>
+        <p>مصممة المحتوى التعليمي</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/layla"><img src="icon-instagram.svg" alt="Instagram"></a>
+        </div>
+      </div>
+      <div class="team-member">
+        <img src="team5.jpg" alt="يوسف سعيد - مدير المحتوى الرقمي" loading="lazy">
+        <h3>يوسف سعيد</h3>
+        <p>مدير المحتوى الرقمي</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/youssef"><img src="icon-instagram.svg" alt="Instagram"></a>
+        </div>
+      </div>
+    </div>
+  </main>
   <footer>
     جميع الحقوق محفوظة © 2025 - Monex Academy
   </footer>
-
 </body>
 </html>
-
-
